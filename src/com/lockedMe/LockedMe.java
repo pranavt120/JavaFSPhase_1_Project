@@ -58,6 +58,9 @@ public class LockedMe {
                     deleteFile();
                     break;
                 case "4":
+                    searchFile();
+                    break;
+                case "5":
                     greetingScreen();
                     break;
                 case "q":
@@ -135,18 +138,35 @@ public class LockedMe {
         if(file.delete()){
             System.out.println("File deleted successfully");
         }else{
-            System.out.println("Failed to delete the file");
+            System.out.println("Failed to delete the file (File not Found)");
         }
     }
     public static void addDirctoryPath(){
         String directory;
-        System.out.println("Enter a valid Directory path you want to Look in:");
+        System.out.println("Enter a valid Directory path you want to Look in: (Ex: D:\\java\\File)");
         directory = scn.nextLine();
         directoryPath = new File(directory);
     }
 
-    public static void searchFile(String fileName){
-
+    public static void searchFile(){
+        String fileName;
+        int flag = 0;
+        String[] files = directoryPath.list();
+        System.out.println("Enter File Name");
+        fileName = scn.nextLine();
+        if(files == null){
+            System.out.println("Empty directory");
+        }else{
+            for(var a: files){
+                if(a.equalsIgnoreCase(fileName)){
+                    System.out.println(fileName+" is available");
+                    flag = 1;
+                }
+            }
+        }
+      if(flag == 0){
+          System.out.println("File not Found");
+      }
     }
 
 
