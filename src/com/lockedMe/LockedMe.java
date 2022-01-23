@@ -43,7 +43,8 @@ public class LockedMe {
             System.out.println("1. List all Files\n" +
                     "2. Add a File\n" +
                     "3. Delete a File\n" +
-                    "4. Go back to the Greetings Menu\n" +
+                    "4. Search File\n" +
+                    "5. Go back to the Greetings Menu\n"+
                     "Q. To Close the Application");
             choice = scn.nextLine().toLowerCase(Locale.ROOT);
             switch (choice){
@@ -126,12 +127,26 @@ public class LockedMe {
         }
 
     }
-    public static void deleteFile(){}
+    public static void deleteFile(){
+        String fileName;
+        System.out.println("Enter a File name to Delete");
+        fileName = scn.nextLine();
+        File file = new File(directoryPath+"\\"+fileName);
+        if(file.delete()){
+            System.out.println("File deleted successfully");
+        }else{
+            System.out.println("Failed to delete the file");
+        }
+    }
     public static void addDirctoryPath(){
         String directory;
         System.out.println("Enter a valid Directory path you want to Look in:");
         directory = scn.nextLine();
         directoryPath = new File(directory);
+    }
+
+    public static void searchFile(String fileName){
+
     }
 
 
