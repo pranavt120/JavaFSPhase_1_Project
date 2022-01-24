@@ -95,7 +95,6 @@ public class LockedMe {
             System.out.println("Press \"$\" key and Press Enter key to Add file to the Directory. ");
             while(true){
                 character = scn.nextLine();
-                System.out.println(character.charAt(character.length() -1));
                 if(character.charAt(character.length() -1) == '$'){
                     out.write(character.substring(0,character.length() -1));
                     out.flush();
@@ -174,10 +173,10 @@ public class LockedMe {
         if(files == null){
             System.out.println("Empty directory");
         }else{
-            if(Collections.binarySearch(files,fileName)!= -1){
-                System.out.println(fileName+" is available");
-            }else{
+            if(Collections.binarySearch(files,fileName)< 0){
                 System.out.println("File not Found");
+            }else{
+                System.out.println(fileName+" is available");
             }
         }
     }
