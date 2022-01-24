@@ -1,7 +1,7 @@
 package com.lockedMe;
 
 import java.io.*;
-import java.nio.file.NoSuchFileException;
+import java.nio.file.*;
 import java.util.*;
 
 public class LockedMe {
@@ -142,10 +142,28 @@ public class LockedMe {
         }
     }
     public static void addDirctoryPath(){
-        String directory;
+        System.out.println("in directory path");
         System.out.println("Enter a valid Directory path you want to Look in: (Ex: D:\\java\\File)");
-        directory = scn.nextLine();
-        directoryPath = new File(directory);
+        String directory = scn.nextLine();
+
+
+        while (true){
+            try{
+                if(Files.isDirectory(Paths.get(directory))){
+                    directoryPath = new File(directory);
+                    break;
+                }else{
+                    System.out.println("Enter a valid Directory path you want to Look in: (Ex: D:\\java\\File)");
+                    directory = scn.nextLine();
+                }
+            }catch (InvalidPathException ex){
+                System.out.println("Enter a valid Directory path you want to Look in: (Ex: D:\\java\\File). There should not be any space before the path");
+                directory = scn.nextLine();
+            }
+
+            System.out.println(directory);
+        }
+
     }
 
     public static void searchFile(){
