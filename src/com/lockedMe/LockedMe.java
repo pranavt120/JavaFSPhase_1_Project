@@ -168,23 +168,18 @@ public class LockedMe {
 
     public static void searchFile(){
         String fileName;
-        int flag = 0;
-        String[] files = directoryPath.list();
+        List<String> files = new ArrayList<>(Arrays.asList(directoryPath.list()));
         System.out.println("Enter File Name");
         fileName = scn.nextLine();
         if(files == null){
             System.out.println("Empty directory");
         }else{
-            for(var a: files){
-                if(a.equalsIgnoreCase(fileName)){
-                    System.out.println(fileName+" is available");
-                    flag = 1;
-                }
+            if(Collections.binarySearch(files,fileName)!= -1){
+                System.out.println(fileName+" is available");
+            }else{
+                System.out.println("File not Found");
             }
         }
-      if(flag == 0){
-          System.out.println("File not Found");
-      }
     }
 
 
